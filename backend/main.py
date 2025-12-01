@@ -146,7 +146,7 @@ def add_chunk_to_database(chunk: str, source: str) -> None:
 def clear_database():
     """Clear the vector database."""
     global VECTOR_DB
-    VECTOR_DB = []
+    VECTOR_DB.clear()
 
 
 def cosine_similarity(a: List[float], b: List[float]) -> float:

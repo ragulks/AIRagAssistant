@@ -4,3 +4,9 @@ PyPDF2
 flask
 flask-cors
 werkzeug
+flask-jwt-extended
+flask-sqlalchemy
+flask-bcrypt
+gunicorn
+python-dotenv
+psycopg2-binary
