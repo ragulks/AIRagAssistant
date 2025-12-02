@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { MessageSquare, Plus, LogOut, Trash2 } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 
 const Sidebar = ({ currentSessionId, onSelectSession, onNewChat }) => {
     const [sessions, setSessions] = useState([]);
@@ -14,7 +15,7 @@ const Sidebar = ({ currentSessionId, onSelectSession, onNewChat }) => {
 
     const fetchHistory = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/history', {
+            const res = await fetch(`${API_BASE_URL}/history`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (res.ok) {
@@ -32,7 +33,7 @@ const Sidebar = ({ currentSessionId, onSelectSession, onNewChat }) => {
         if (!window.confirm('Are you sure you want to delete this chat?')) return;
 
         try {
-            const res = await fetch(`http://localhost:5000/api/history/${sessionId}`, {
+            const res = await fetch(`${API_BASE_URL}/history/${sessionId}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
@@ -75,8 +76,8 @@ const Sidebar = ({ currentSessionId, onSelectSession, onNewChat }) => {
                     <div
                         key={session.id}
                         className={`group relative flex items-center gap-2 p-3 rounded-lg transition-colors ${currentSessionId === session.id
-                                ? 'bg-white/10 text-white'
-                                : 'text-gray-400 hover:bg-white/5 hover:text-white'
+                            ? 'bg-white/10 text-white'
+                            : 'text-gray-400 hover:bg-white/5 hover:text-white'
                             }`}
                     >
                         <button

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import RagAssistantUI from '../components/RagAssistantUI';
 import { useAuth } from '../context/AuthContext';
+import { API_BASE_URL } from '../config';
 
 const ChatPage = () => {
     const [currentSessionId, setCurrentSessionId] = useState(null);
@@ -9,7 +10,7 @@ const ChatPage = () => {
 
     const handleNewChat = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/history', {
+            const res = await fetch(`${API_BASE_URL}/history`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
