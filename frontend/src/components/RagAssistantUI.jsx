@@ -67,7 +67,10 @@ const RagAssistantUI = ({ sessionId }) => {
   const fetchMessages = async (id) => {
     try {
       const res = await fetch(`${API_BASE_URL}/history/${id}`, {
-        headers: { 'Authorization': `Bearer ${token}` }
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'ngrok-skip-browser-warning': 'true'
+        }
       });
       if (res.ok) {
         const data = await res.json();
@@ -94,7 +97,9 @@ const RagAssistantUI = ({ sessionId }) => {
   // Check API connection and status
   const checkApiConnection = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/health`);
+      const response = await fetch(`${API_BASE_URL}/health`, {
+        headers: { 'ngrok-skip-browser-warning': 'true' }
+      });
       if (response.ok) {
         const data = await response.json();
         setApiStatus({
@@ -163,7 +168,10 @@ const RagAssistantUI = ({ sessionId }) => {
     try {
       const response = await fetch(`${API_BASE_URL}/upload`, {
         method: "POST",
-        headers: { 'Authorization': `Bearer ${token}` },
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'ngrok-skip-browser-warning': 'true'
+        },
         body: formData,
       });
 
@@ -205,7 +213,10 @@ const RagAssistantUI = ({ sessionId }) => {
     const poll = async () => {
       try {
         const response = await fetch(`${API_BASE_URL}/upload/status`, {
-          headers: { 'Authorization': `Bearer ${token}` }
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'ngrok-skip-browser-warning': 'true'
+          }
         });
         const status = await response.json();
 
@@ -247,7 +258,8 @@ const RagAssistantUI = ({ sessionId }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
+          "Authorization": `Bearer ${token}`,
+          "ngrok-skip-browser-warning": "true"
         },
         body: JSON.stringify({
           message: userMessage,
@@ -334,7 +346,10 @@ const RagAssistantUI = ({ sessionId }) => {
     try {
       const response = await fetch(`${API_BASE_URL}/clear`, {
         method: "POST",
-        headers: { 'Authorization': `Bearer ${token}` }
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'ngrok-skip-browser-warning': 'true'
+        }
       });
 
       if (response.ok) {

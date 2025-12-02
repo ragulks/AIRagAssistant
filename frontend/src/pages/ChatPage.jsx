@@ -12,7 +12,10 @@ const ChatPage = () => {
         try {
             const res = await fetch(`${API_BASE_URL}/history`, {
                 method: 'POST',
-                headers: { 'Authorization': `Bearer ${token}` }
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'ngrok-skip-browser-warning': 'true'
+                }
             });
             if (res.ok) {
                 const data = await res.json();

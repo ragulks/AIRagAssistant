@@ -16,7 +16,10 @@ const Sidebar = ({ currentSessionId, onSelectSession, onNewChat }) => {
     const fetchHistory = async () => {
         try {
             const res = await fetch(`${API_BASE_URL}/history`, {
-                headers: { 'Authorization': `Bearer ${token}` }
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'ngrok-skip-browser-warning': 'true'
+                }
             });
             if (res.ok) {
                 const data = await res.json();
@@ -35,7 +38,10 @@ const Sidebar = ({ currentSessionId, onSelectSession, onNewChat }) => {
         try {
             const res = await fetch(`${API_BASE_URL}/history/${sessionId}`, {
                 method: 'DELETE',
-                headers: { 'Authorization': `Bearer ${token}` }
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'ngrok-skip-browser-warning': 'true'
+                }
             });
             if (res.ok) {
                 // If the deleted session was the current one, clear selection
