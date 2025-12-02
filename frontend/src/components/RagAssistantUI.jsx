@@ -11,6 +11,7 @@ import {
   CheckCircle,
   Loader,
 } from "lucide-react";
+import { API_BASE_URL } from "../config";
 
 const RagAssistantUI = ({ sessionId }) => {
   const [isDarkTheme, setIsDarkTheme] = useState(true);
@@ -30,7 +31,7 @@ const RagAssistantUI = ({ sessionId }) => {
   const fileInputRef = useRef(null);
 
   // API Configuration
-  const API_BASE_URL = "http://localhost:5000/api";
+
 
   // Prevent page scrolling on mount/unmount
   useEffect(() => {
@@ -407,8 +408,8 @@ const RagAssistantUI = ({ sessionId }) => {
             </div>
             <div
               className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white ${apiStatus.connected
-                  ? "bg-green-500 animate-ping"
-                  : "bg-red-500"
+                ? "bg-green-500 animate-ping"
+                : "bg-red-500"
                 }`}
             ></div>
           </div>
